@@ -23,7 +23,9 @@ class App extends TypedBaseComponent<appProps, AppModel> {
             <NavigationContainer>
                 <Stack.Navigator>
                     <Stack.Screen name="SplashScreen" component={SplashScreen} />
-                    <Stack.Screen name="HomeScreen" component={HomeScreen} />
+                    <Stack.Screen name="HomeScreen" >
+                        {props => <HomeScreen {...props} extraData={'HomeScreen'} />}
+                    </Stack.Screen>
                 </Stack.Navigator>
             </NavigationContainer>
         </View>

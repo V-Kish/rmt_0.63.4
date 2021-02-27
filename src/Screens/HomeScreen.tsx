@@ -14,10 +14,10 @@ class HomeScreen extends BaseScreen<HomeController> {
         return 'HomeScreen';
     }
 
-    renderContent() {
+    content() {
         return (
-            <View>
-                <Text>HomeScreen</Text>
+            <View style={{flex:1}}>
+                <Text>{this.props.extraData}</Text>
             </View>
         );
     }
