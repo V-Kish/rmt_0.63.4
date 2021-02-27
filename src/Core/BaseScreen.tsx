@@ -5,13 +5,11 @@ import { View } from "react-native";
 import { BaseController, baseControllerProps } from "../Controllers/BaseController";
 export const CurrentScreen = React.createContext(null);
 abstract class BaseScreen<C extends BaseController> extends TypedBaseComponent<baseScreenProps, BaseScreenModel> {
-    /**
-     * Контроллер скрина
-     */
+
     private readonly _controller: C;
 
     /**
-     * Имя скрина
+     *
      * @returns {string} Sum of a and b
     */
        get screenName() {
@@ -20,7 +18,7 @@ abstract class BaseScreen<C extends BaseController> extends TypedBaseComponent<b
     }
 
     /**
-     * Конструктов базового класа
+     *
      * @param props - props
      * @param controller - controller
     */
@@ -30,7 +28,7 @@ abstract class BaseScreen<C extends BaseController> extends TypedBaseComponent<b
     }
 
     /**
-     * Контроллер скрина
+     * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
      * @returns {C}
      */
     public get controller() {

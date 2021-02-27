@@ -1,9 +1,10 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
-import { BaseScreen, CurrentScreen } from '../Core/BaseScreen';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { BaseScreen } from '../Core/BaseScreen';
 import { SplashController } from '../Controllers/SplashController';
-import {baseScreenProps, componentPropsWithModel} from "../Core/BaseComponent";
-import {BaseScreenModel} from "../Core/BaseScreenModel";
+import { baseScreenProps, componentPropsWithModel } from "../Core/BaseComponent";
+import { BaseScreenModel } from "../Core/BaseScreenModel";
+import { styledTheme, STYLES } from "../Styles/Styles";
 
 class SplashScreen extends BaseScreen<SplashController> {
     constructor(props:componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
@@ -13,24 +14,21 @@ class SplashScreen extends BaseScreen<SplashController> {
     get screenName() {
         return 'SplashScreen';
     }
-
+    public get styles (){
+        return styledTheme(this, {drawer: STYLES.drawer, buttons: STYLES.buttons})
+    }
     content() {
         return (
-            <View style={{flex:1}}>
-                  <ThemedButton  {...this.props}/>
+            <View style={this.styles.drawer}>
+                <TouchableOpacity  style={this.styles.buttons.container}  onPress={() =>{
+                    this.props.navigation.navigate('HomeScreen')
+                }}>
+                    <Text style={{color:'green'}}>HomeScreen</Text>
+                </TouchableOpacity>
+
             </View>
         );
     }
 }
-class ThemedButton extends React.Component {
-    // Assign a contextType to read the current theme context.
-    // React will find the closest theme Provider above and use its value.
-    // In this example, the current theme is "dark".
-    static contextType = CurrentScreen;
-    render() {
-        return (
-            <Button  title={this.context.screenName} onPress={() => this.props.navigation.navigate('HomeScreen')}/>
-        )
-    }
-}
 export {SplashScreen};
+

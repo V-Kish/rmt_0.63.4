@@ -1,5 +1,6 @@
 import {BaseModel, baseProps} from './BaseModel';
 import {Component} from 'react';
+import {styledTheme, STYLES} from "../Styles/Styles";
 
 type baseComponentProps = {
     key?: string;
@@ -18,7 +19,7 @@ type componentPropsWithModel<
 
 type baseScreenProps = baseComponentProps & {
   /**
-   * ��� ������
+   *
    */
   screenName: string;
 };
@@ -29,6 +30,7 @@ abstract class TypedBaseComponent<P extends baseComponentProps, T extends BaseMo
         if (this.props.model !== void 0){
             this.props.model.setComponent(this.id, this);
         }
+        styledTheme(this, {empty:STYLES.empty})
     }
 
     public get id() {
@@ -84,6 +86,9 @@ abstract class TypedBaseComponent<P extends baseComponentProps, T extends BaseMo
     public shouldComponentUpdate(
         nextProps: Readonly<componentPropsWithModel<P, T>>,
     ) {
+        if (this.props.model === void 0){
+            return  false
+        }
         if (this.model.id !== nextProps.model.id) {
             return true;
         }
