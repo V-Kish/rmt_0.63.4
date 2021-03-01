@@ -15,7 +15,7 @@ class App extends TypedBaseComponent<appProps, AppModel> {
   constructor(props:componentPropsWithModel<appProps, AppModel>) {
     super(props);
   }
-
+ 
   render() {
     return (
         <View style={{flex:1,backgroundColor:'blue'}}>
