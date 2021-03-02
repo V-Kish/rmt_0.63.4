@@ -1,44 +1,56 @@
-import {BaseModel, baseProps} from './BaseModel';
+import {BaseModel, baseModelProps} from './BaseModel';
 import {Component} from 'react';
-import {styledTheme, STYLES} from "../Styles/Styles";
+import { BaseScreen } from './BaseScreen';
+import { BaseController } from '../Controllers/BaseController';
+
 
 type baseComponentProps = {
     key?: string;
     id: string;
     style?: object;
+    parent?: TypedBaseComponent<baseComponentProps, BaseModel<baseModelProps>>;
+    screen?: BaseScreen<BaseController>;
 };
 
-type componentPropsWithModel<
-  P extends baseComponentProps,
-  T extends BaseModel<baseProps>
-> = P & {
-  /**
-   * Модель компонента @T*/
-  model: T;
-};
-
+type componentPropsWithModel<P extends baseComponentProps, T extends BaseModel<baseModelProps>> = P & {
+    /**
+     * Модель компонента @T*/
+    model: T;
+  };
+  
 type baseScreenProps = baseComponentProps & {
-  /**
-   *
-   */
-  screenName: string;
+/**
+ * ��� ������
+ */
+    screenName: string;
 };
+  
 
-abstract class TypedBaseComponent<P extends baseComponentProps, T extends BaseModel<baseProps>> extends Component<componentPropsWithModel<P, T>, {}, any> {
-    constructor(public props: componentPropsWithModel<P, T>) {
+abstract class TypedBaseComponent<P extends baseComponentProps, T extends BaseModel<baseModelProps>> extends Component<componentPropsWithModel<P, T>, {}, any> {
+    constructor(props: componentPropsWithModel<P, T>) {
         super(props);
         if (this.props.model !== void 0){
             this.props.model.setComponent(this.id, this);
         }
-        styledTheme(this, {empty:STYLES.empty})
+    }
+    public get parent() {
+        return this.props.parent;
+    }
+
+    public get screen() {
+        return this.props.screen;
     }
 
     public get id() {
         return this.props.id;
     }
 
-    public childId<M extends BaseModel<baseProps>>(model: M) {
-        return `${this.props.id}_${model.id}`;
+    public childId<M extends BaseModel<baseModelProps>>(model: M) {
+        return `${this.id}_${model.id}`;
+    }
+
+    public childProps<M extends BaseModel<baseModelProps>>(model: M) {
+        return { id: this.childId(model), key: this.childId(model), model, parent: this, screen: this.props.screen };
     }
 
     public get model() {
@@ -49,9 +61,7 @@ abstract class TypedBaseComponent<P extends baseComponentProps, T extends BaseMo
         return this.props.style;
     }
 
-    public setComponent(
-        component: Component<componentPropsWithModel<P, T>, {}, any>,
-    ) {
+    public setComponent(component: Component<componentPropsWithModel<P, T>, {}, any>) {
         this.model.setComponent(this.id, component);
     }
 
@@ -82,19 +92,15 @@ abstract class TypedBaseComponent<P extends baseComponentProps, T extends BaseMo
             this.props.model.setComponent(this.id, null);
         }
     }
-
-    public shouldComponentUpdate(
-        nextProps: Readonly<componentPropsWithModel<P, T>>,
-    ) {
-        if (this.props.model === void 0){
-            return  false
+    public shouldComponentUpdate(nextProps: Readonly<componentPropsWithModel<P, T>>) {
+        if(this.model !== void 0){
+            if (this.model.id !== nextProps.model.id) {
+                return true;
+            }
+            return this.model.getModified(this.id);
         }
-        if (this.model.id !== nextProps.model.id) {
-            return true;
-        }
-        return this.model.getModified(this.id);
+        return false;
     }
-
     public render(): JSX.Element | null {
         if (this.props.model !== void 0){
             this.model.setModified(this.id, false);
@@ -102,6 +108,7 @@ abstract class TypedBaseComponent<P extends baseComponentProps, T extends BaseMo
         return null;
     }
 }
+
 
 export {TypedBaseComponent};
 export type {baseComponentProps, componentPropsWithModel, baseScreenProps};

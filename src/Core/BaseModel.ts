@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-type baseProps = { id: string };
+type baseModelProps = { id: string };
 
 class WrapComponent {
     private _id: string;
@@ -51,7 +51,7 @@ class WrapComponent {
     }
 }
 
-abstract class BaseModel<P extends baseProps> {
+abstract class BaseModel<P extends baseModelProps> {
     private _props: P;
     private _components: Map<string, WrapComponent>;
 
@@ -121,4 +121,4 @@ abstract class BaseModel<P extends baseProps> {
 }
 
 export {BaseModel};
-export type {baseProps};
+export type {baseModelProps};

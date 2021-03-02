@@ -1,6 +1,6 @@
-import {BaseModel, baseProps} from "./BaseModel";
+import {BaseModel, baseModelProps} from "./BaseModel";
 
-type appModelProps = baseProps & { appName: string };
+type appModelProps = baseModelProps & { appName: string };
 
 class AppModel extends BaseModel<appModelProps> {
     constructor(props: appModelProps) {
