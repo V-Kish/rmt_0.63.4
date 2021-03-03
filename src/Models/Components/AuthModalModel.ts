@@ -1,6 +1,9 @@
 import { BaseModel, baseModelProps } from '../../Core/BaseModel';
+import { WebViewModel } from './WebViewModel';
 
-type authModalModelProps = baseModelProps & {};
+type authModalModelProps = baseModelProps & {
+    webViewModel: WebViewModel;
+};
 
 class AuthModalModel extends BaseModel<authModalModelProps>{
     private _state: boolean;
@@ -21,6 +24,9 @@ class AuthModalModel extends BaseModel<authModalModelProps>{
     }
     public set state(value: boolean){
         this._state = value;
+    }
+    public get webViewModel(){
+        return this.props.webViewModel;
     }
 }
 

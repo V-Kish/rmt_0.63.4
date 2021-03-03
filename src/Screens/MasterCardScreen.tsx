@@ -3,20 +3,20 @@ import {Text,TouchableOpacity, View,} from 'react-native';
 import { BaseScreen } from '../Core/BaseScreen';
 import {baseScreenProps, componentPropsWithModel} from "../Core/BaseComponent";
 import {BaseScreenModel} from "../Core/BaseScreenModel";
-import { HomeController } from '../Controllers/HomeController';
+import { MasterCardController } from '../Controllers/MasterCardController';
 import {app} from "../Core/AppImpl";
 import { LayoutView } from './Layout';
 import { WebView } from 'react-native-webview';
 import { STYLES } from '../Styles/Styles';
-import { AuthModalView } from '../Views/Components/AuthModalView';
-import {BaseWebView} from '../Views/Components/BaseWebView';
-class HomeScreen extends LayoutView<HomeController> {
+import { BaseWebView } from '../Views/Components/BaseWebView';
+ 
+class MasterCardScreen extends LayoutView<MasterCardController> {
     constructor(props:componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
-        super(props,HomeController);
+        super(props,MasterCardController);
     }
 
     public get screenName() {
-        return HomeScreen.name;
+        return MasterCardScreen.name;
     }
 
     public content() {
@@ -24,15 +24,14 @@ class HomeScreen extends LayoutView<HomeController> {
             <View style={ STYLES.homeScreen.container }>
 
                {/* <WebView 
-                    source={{uri: "https://farvater.travel"}}
+                    source={{uri: "https://farvater.travel/mastercard-bilshe/"}}
                     style={{height: "100%"}}
                /> */}
-                
-               <BaseWebView {...this.childProps(this.controller.webview)} uri="https://farvater.travel" />
 
+                <BaseWebView {...this.childProps(this.controller.webview)} uri="https://farvater.travel/mastercard-bilshe/" />
             </View>
         );
     }
 }
 
-export {HomeScreen};
+export {MasterCardScreen};

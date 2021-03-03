@@ -17,22 +17,30 @@ export const mainNav = StyleSheet.create(
             shadowOpacity: CONSTANTS.shadow.shadowOpacity,
             shadowRadius: CONSTANTS.shadow.shadowRadius,  
             elevation: CONSTANTS.shadow.elevation,
+            alignItems: "center"
         },
         logo: {
-            justifyContent: "flex-start",
+            justifyContent: "center",
             flexDirection: "row",
             alignItems: "center",
             height: CONSTANTS.logo.height,
-            width: CONSTANTS.logo.width,
+            width: CONSTANTS.logo.width
+        },
+        menuButton: {
+            justifyContent: "flex-start",
+            flexDirection: "row",
+            alignItems: "center",
+            height: 40,
+            width: 40
         },
         logoImage: {
-            width: "100%"
+            width: "100%",
+            justifyContent: "center"
         },
         authButton: {
             justifyContent: "center",
             height: "100%",
-            width: 70,
-            justifyContent: "center",
+            width: 40,
             alignItems: "flex-end"
         },
         loginImage: {

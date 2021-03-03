@@ -18,7 +18,7 @@ class LayoutView<C extends BaseController> extends BaseScreen<C>{
     public header(){
         return (
             // <View>//app.navigator/header/model
-            <HeaderView id={this.controller.mainNav.id} model={this.controller.mainNav} authModal={this.controller.authModal}/>
+            <HeaderView id={this.controller.mainNav.id} model={this.controller.mainNav} authModal={this.controller.authModal} userModel={this.controller.user}/>
         ); 
     }
 }

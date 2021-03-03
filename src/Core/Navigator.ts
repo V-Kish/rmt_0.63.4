@@ -1,4 +1,4 @@
-import { CommonActions, NavigationContainerRef } from "@react-navigation/native";
+import { CommonActions, DrawerActions, NavigationContainerRef } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { MainNavigationModel } from '../Models/Navigation/MainNavigationModel';
 import { HomeScreen } from "../Screens/HomeScreen";
@@ -12,6 +12,7 @@ class Navigator {
         this._navigation = null;
         this._navigatorModel = new MainNavigationModel({id: "1"});
         this._mainNavigationStack = createStackNavigator();
+        this.toggleDrawer = this.toggleDrawer.bind(this);
     }
 
     public get state() {
@@ -41,6 +42,12 @@ class Navigator {
     public toHomeScreen(){
         this.navigate(HomeScreen.name);
     }
+
+
+    public toggleDrawer(){
+        this._navigation.dispatch(DrawerActions.toggleDrawer());
+    }
+
     
 }
 

@@ -1,14 +1,15 @@
 import { mainNav } from './MainNavigationStyles';
 import { homeScreen } from './HomeScreenStyles';
-import { layout } from './layout';
+import { Layout } from './layout';
 import { authModal } from './AuthModal';
-
+import { menu } from './MenuStyle';
 
 
 export const STYLES = {
     mainNav: mainNav,
     homeScreen: homeScreen,
-    layout: layout,
-    authModal: authModal
+    layout: Layout,
+    authModal: authModal,
+    menu: menu
 };
 
