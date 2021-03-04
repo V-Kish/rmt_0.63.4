@@ -4,7 +4,6 @@ import { BaseScreen } from '../Core/BaseScreen';
 import {baseScreenProps, componentPropsWithModel} from "../Core/BaseComponent";
 import {BaseScreenModel} from "../Core/BaseScreenModel";
 import { FaqController } from '../Controllers/FaqController';
-import {app} from "../Core/AppImpl";
 import { LayoutView } from './Layout';
 import { WebView } from 'react-native-webview';
 import { STYLES } from '../Styles/Styles';
@@ -28,7 +27,7 @@ class FaqScreen extends LayoutView<FaqController> {
                     style={{height: "100%"}}
                /> */}
 
-                <BaseWebView {...this.childProps(this.controller.webview)} uri="https://farvater.travel/faq/" />
+                <BaseWebView {...this.childProps(this.controller.webview)}  uri={`${this.controller.domainURI}faq/`} />
             </View>
         );
     }

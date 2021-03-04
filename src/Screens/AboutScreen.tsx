@@ -28,7 +28,7 @@ class AboutScreen extends LayoutView<AboutController> {
                     style={{height: "100%"}}
                /> */}
 
-                <BaseWebView {...this.childProps(this.controller.webview)} uri="https://farvater.travel/about/" />
+                <BaseWebView {...this.childProps(this.controller.webview)} uri={`${this.controller.domainURI}about/`} />
             </View>
         );
     }

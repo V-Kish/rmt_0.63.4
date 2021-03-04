@@ -6,7 +6,7 @@ import { CONSTANTS } from "./Variables";
 export const mainNav = StyleSheet.create(
     {
         container: {
-            backgroundColor: CONSTANTS.colors.white,
+            backgroundColor: "#00AEEF",
             height: CONSTANTS.header.height,
             width: CONSTANTS.header.width,
             justifyContent: "space-between",
@@ -26,12 +26,18 @@ export const mainNav = StyleSheet.create(
             height: CONSTANTS.logo.height,
             width: CONSTANTS.logo.width
         },
+        buttonWrapper: {
+            width: 40,
+            height: 40,
+            alignItems: "center",
+            justifyContent: "center"
+        },
         menuButton: {
             justifyContent: "flex-start",
             flexDirection: "row",
             alignItems: "center",
-            height: 40,
-            width: 40
+            height: 20,
+            width: 20
         },
         logoImage: {
             width: "100%",

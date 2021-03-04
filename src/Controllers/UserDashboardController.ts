@@ -3,10 +3,10 @@ import { WebViewController } from "./WebViewController";
 
 
 
-class HelpController extends WebViewController{
+class UserDashboardController extends WebViewController{
     
     constructor() {
-        super({id:'HelpControllerId'})
+        super({id:'UserDashboardControllerId'})
     }
 }
-export {HelpController}
+export {UserDashboardController}

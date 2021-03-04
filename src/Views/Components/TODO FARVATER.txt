@@ -1,0 +1,88 @@
+TODO FARVATER
+03/03/2021
+Authorization
+    BaseWebViewModel <!!!!!!!!DONE!!!!!!!!>
+    method reload to forceUpdate(); <!!!!!!!!DONE!!!!!!!!>
+
+
+    Home -> HomeWebView(props.uri) -> BaseWebViewModel <!!!!!!!!DONE!!!!!!!!>
+    Mastercard -> MastercardWebView(props.uri) -> BaseWebViewModel <!!!!!!!!DONE!!!!!!!!>
+    Faq -> FaqWebView(props.uri) -> BaseWebViewModel <!!!!!!!!DONE!!!!!!!!>
+    About -> AboutWebView(props.uri) -> BaseWebViewModel <!!!!!!!!DONE!!!!!!!!>
+    Blog -> BlogWebView(props.uri) -> BaseWebViewModel <!!!!!!!!DONE!!!!!!!!>
+    Contacts -> ContactsWebView(props.uri) -> BaseWebViewModel <!!!!!!!!DONE!!!!!!!!>
+    Help -> HelpWebView(props.uri) -> BaseWebViewModel <!!!!!!!!DONE!!!!!!!!>
+
+
+
+
+    //FARVATER LOGIN
+
+    (authCallback = success){
+        HeaderView.isLoggedIn = true;
+        app.controller.webview.reload();
+
+
+
+        From web
+            If auth success 
+                window.ReactNativeWebView.postMessage("loggedIn");
+
+        In React
+            onMessage({
+                if message === loggedIn{
+                    HeaderView.isLoggedIn = true;
+                    app.controller.webview.reload();
+                }
+            })
+    }
+
+//Added message listener on index Html
+//Added onMessage listener on react -> console.log(Userdata)
+Need to do:
+onSuccess reload the webview model and header model
+
+
+    //FARVATER LOGOUT 
+
+    (postMessage().logout()){
+        HeaderView.isLoggedIn = false;
+        app.controller.webview.reload();
+
+
+
+        From React:
+        postMessage({"logout});
+        HeaderView.isLoggedIn = true;
+        app.controller.webview.reload();
+
+        On Html:
+            addEventListener({"message", (event)=>{
+                if event === React
+                    this.do.logout()
+                else
+                    pass
+            }})
+    }
+
+
+    
+
+
+
+Design:
+Add a TouchableOpacity (menu toggle button) in header at left side <!!!!!!!!DONE!!!!!!!!>
+Center Farvater logo in header <!!!!!!!!DONE!!!!!!!!>
+
+
+
+
+WebView:
+click handler, all clicks on tour should send a postMessage with href to React.
+React is listening and open tour screen by href(can be a modal????)
+on webview.goBack() close the tour screen and return the user to the main screen
+
+
+
+
+Front-end if window.ReactNativeWebView !=== undefined -> load the new styles, else load the main site design????

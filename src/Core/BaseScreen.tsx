@@ -7,7 +7,7 @@ import { app } from "./AppImpl";
 import { BaseModel, baseModelProps } from "./BaseModel";
 import { SafeAreaView } from "react-native";
 import { AuthModalView } from "../Views/Components/AuthModalView";
-
+import { WebViewController }  from '../Controllers/WebViewController';
 export const CurrentScreen = React.createContext(null);
 
 abstract class BaseScreen<C extends BaseController> extends TypedBaseComponent<baseScreenProps, BaseScreenModel> {
@@ -33,8 +33,8 @@ abstract class BaseScreen<C extends BaseController> extends TypedBaseComponent<b
     */
     constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>, controllerImpl: new (props: baseControllerProps) => C) {
         super(props);
-        this._controller = new controllerImpl({ name: this.screenName, id: this.screenName });
-        app.setScreen(this.screenName, this);
+        this._controller = new controllerImpl({ id: this.screenName });
+        app.setScreen(this);
     }
 
     public childProps<M extends BaseModel<baseModelProps>>(model: M) {
@@ -86,6 +86,11 @@ abstract class BaseScreen<C extends BaseController> extends TypedBaseComponent<b
     public footer(): JSX.Element | null {
         return <View />;
     }
+    
+
+    public authModal(): JSX.Element | null {
+        return null;
+    }
 
     public render() {
         return (
@@ -95,7 +100,7 @@ abstract class BaseScreen<C extends BaseController> extends TypedBaseComponent<b
                     {this.content()}
                 </View>
                 {this.footer()}
-                <AuthModalView {...this.childProps(this.controller.authModal)} />
+                {this.authModal()}
             </SafeAreaView>
         );
     }

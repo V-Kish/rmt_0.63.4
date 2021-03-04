@@ -1,25 +1,24 @@
 import { baseComponentProps, componentPropsWithModel, TypedBaseComponent } from '../../Core/BaseComponent';
 import React from 'react';
-import { Text, View } from 'react-native';
+
 
 import { MainNavigationModel } from '../../Models/Navigation/MainNavigationModel';
-import { STYLES } from '../../Styles/Styles';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from '../../Screens/HomeScreen';
 
 import { app } from '../../Core/AppImpl';
 
-import { createDrawerNavigator, DrawerContent } from '@react-navigation/drawer';
 import { DrawerContentView } from './DrawerContentView';
-import { BaseController } from '../../Controllers/BaseController';
 import { MasterCardScreen } from '../../Screens/MasterCardScreen';
 import { FaqScreen } from '../../Screens/FaqScreen';
 import { AboutScreen } from '../../Screens/AboutScreen';
 import { BlogScreen } from '../../Screens/BlogScreen';
 import { ContactUsScreen } from '../../Screens/ContactUsScreen';
 import { HelpScreen } from '../../Screens/HelpScreen';
-
+import { HistoryScreen } from '../../Screens/HistoryScreen';
+import { FavouriteScreen } from '../../Screens/FavouriteScreen';
+import { RecomendationScreen } from '../../Screens/RecomendationScreen';
+import { UserDashboardScreen } from '../../Screens/UserDashboard';
 
 
 
@@ -41,7 +40,6 @@ class MainNavigationView extends TypedBaseComponent<mainNavigationViewProps, Mai
     
 
     render() {
-
         super.render();
 
         return(
@@ -50,7 +48,7 @@ class MainNavigationView extends TypedBaseComponent<mainNavigationViewProps, Mai
                <app.drawer.Navigator
                     drawerType={"slide"}
                     drawerPosition={"left"}
-                    drawerContent={ ()=> <DrawerContentView model={app.drawerContent} id={app.drawerContent.id} navigate={app.navigator} /> }
+                    drawerContent={ ()=> <DrawerContentView model={app.drawerContent} id={app.drawerContent.id} /> }
                     screenOptions={
                         {
                             headerShown: false,
@@ -78,9 +76,21 @@ class MainNavigationView extends TypedBaseComponent<mainNavigationViewProps, Mai
                     <app.drawer.Screen name={HelpScreen.name}>
                         {props => <HelpScreen {...props} screenName={HelpScreen.name} model={app.setScreenModel(HelpScreen)} id={HelpScreen.name} key={HelpScreen.name}/>}
                     </app.drawer.Screen>
+                    <app.drawer.Screen name={FavouriteScreen.name}>
+                        {props => <FavouriteScreen {...props} screenName={FavouriteScreen.name} model={app.setScreenModel(FavouriteScreen)} id={FavouriteScreen.name} key={FavouriteScreen.name}/>}
+                    </app.drawer.Screen>
+                    <app.drawer.Screen name={RecomendationScreen.name}>
+                        {props => <RecomendationScreen {...props} screenName={RecomendationScreen.name} model={app.setScreenModel(RecomendationScreen)} id={RecomendationScreen.name} key={RecomendationScreen.name}/>}
+                    </app.drawer.Screen>
+                    <app.drawer.Screen name={HistoryScreen.name}>
+                        {props => <HistoryScreen {...props} screenName={HistoryScreen.name} model={app.setScreenModel(HistoryScreen)} id={HistoryScreen.name} key={HistoryScreen.name}/>}
+                    </app.drawer.Screen>
+                    <app.drawer.Screen name={UserDashboardScreen.name}>
+                        {props => <UserDashboardScreen {...props} screenName={UserDashboardScreen.name} model={app.setScreenModel(UserDashboardScreen)} id={UserDashboardScreen.name} key={UserDashboardScreen.name}/>}
+                    </app.drawer.Screen>
                     
                 </app.drawer.Navigator>
-                
+            
             </NavigationContainer>
 
         );

@@ -3,19 +3,20 @@ import {Text,TouchableOpacity, View,} from 'react-native';
 import { BaseScreen } from '../Core/BaseScreen';
 import {baseScreenProps, componentPropsWithModel} from "../Core/BaseComponent";
 import {BaseScreenModel} from "../Core/BaseScreenModel";
-import { MasterCardController } from '../Controllers/MasterCardController';
+import { AboutController } from '../Controllers/AboutController';
 import { LayoutView } from './Layout';
 import { WebView } from 'react-native-webview';
 import { STYLES } from '../Styles/Styles';
 import { BaseWebView } from '../Views/Components/BaseWebView';
+import { UserDashboardController } from '../Controllers/UserDashboardController';
  
-class MasterCardScreen extends LayoutView<MasterCardController> {
+class UserDashboardScreen extends LayoutView<UserDashboardController> {
     constructor(props:componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
-        super(props,MasterCardController);
+        super(props,UserDashboardController);
     }
 
     public get screenName() {
-        return MasterCardScreen.name;
+        return UserDashboardScreen.name;
     }
 
     public content() {
@@ -23,14 +24,14 @@ class MasterCardScreen extends LayoutView<MasterCardController> {
             <View style={ STYLES.homeScreen.container }>
 
                {/* <WebView 
-                    source={{uri: "https://farvater.travel/mastercard-bilshe/"}}
+                    source={{uri: "https://farvater.travel/about/"}}
                     style={{height: "100%"}}
                /> */}
 
-                <BaseWebView {...this.childProps(this.controller.webview)} uri={`${this.controller.domainURI}mastercard-bilshe/`} />
+                <BaseWebView {...this.childProps(this.controller.webview)} uri={`${this.controller.domainURI}account/u/welcome/`} />
             </View>
         );
     }
 }
 
-export {MasterCardScreen};
+export {UserDashboardScreen};

@@ -1,8 +1,9 @@
 import {BaseController} from "./BaseController";
+import { WebViewController } from "./WebViewController";
 
-class SplashController extends BaseController{
+class SplashController extends WebViewController{
     constructor() {
-        super({name:'SplashController',id:'SplashControllerId'})
+        super({id:'SplashControllerId'})
     }
 }
 export {SplashController}

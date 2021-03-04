@@ -14,7 +14,7 @@ const CONSTANTS = {
         elevation: 10
     },
     header: {
-        height: 70,
+        height: "10%",
         width: "100%",
     },
     logo: {

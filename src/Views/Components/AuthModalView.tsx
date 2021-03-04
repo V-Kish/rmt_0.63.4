@@ -58,7 +58,7 @@ class AuthModalView extends TypedBaseComponent<authModalViewProps, AuthModalMode
                             style={{height: "100%"}}
                         /> */}
 
-                        <BaseWebView {...this.childProps(this.model.webViewModel)} uri="http://192.168.1.35:3000" />
+                        <BaseWebView {...this.childProps(this.model.webViewModel)} uri="https://uat2.farvater.travel/rnauth-v1.html" />
                     </View>
 
 

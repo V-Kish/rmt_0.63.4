@@ -1,11 +1,12 @@
 import {BaseController} from "./BaseController";
+import { WebViewController } from "./WebViewController";
 
 
 
-class HomeController extends BaseController{
+class HomeController extends WebViewController{
     
     constructor() {
-        super({name:'HomeController',id:'HomeControllerId'})
+        super({id:'HomeControllerId'})
     }
 }
 export {HomeController}

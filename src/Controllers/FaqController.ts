@@ -1,11 +1,12 @@
 import {BaseController} from "./BaseController";
+import { WebViewController } from "./WebViewController";
 
 
 
-class FaqController extends BaseController{
+class FaqController extends WebViewController{
     
     constructor() {
-        super({name:'FaqController',id:'FaqControllerId'})
+        super({id:'FaqControllerId'})
     }
 }
 export {FaqController}

@@ -1,11 +1,12 @@
 import {BaseController} from "./BaseController";
+import { WebViewController } from "./WebViewController";
 
 
 
-class BlogController extends BaseController{
+class BlogController extends WebViewController{
     
     constructor() {
-        super({name:'BlogController',id:'BlogControllerId'})
+        super({id:'BlogControllerId'})
     }
 }
 export {BlogController}

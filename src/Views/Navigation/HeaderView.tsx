@@ -13,7 +13,6 @@ import { app } from '../../Core/AppImpl';
 type headerViewProps = baseComponentProps & {
     authModal: AuthModalModel;
     userModel: UserModel;
-    navigator: Navigator;
 };
 
 class HeaderView extends TypedBaseComponent<headerViewProps, HeaderModel>{
@@ -41,7 +40,7 @@ class HeaderView extends TypedBaseComponent<headerViewProps, HeaderModel>{
         return(
 
             <View style={ STYLES.mainNav.container } >
-                <TouchableOpacity onPress={()=>{
+                <TouchableOpacity style={ STYLES.mainNav.buttonWrapper } onPress={()=>{
                     app.navigator.toggleDrawer();
                 }}>
                     <Image style={ STYLES.mainNav.menuButton } source={require('../../Images/menu.png')} />

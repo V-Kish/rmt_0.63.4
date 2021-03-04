@@ -4,7 +4,6 @@ import { BaseScreen } from '../Core/BaseScreen';
 import {baseScreenProps, componentPropsWithModel} from "../Core/BaseComponent";
 import {BaseScreenModel} from "../Core/BaseScreenModel";
 import { HelpController } from '../Controllers/HelpController';
-import {app} from "../Core/AppImpl";
 import { LayoutView } from './Layout';
 import { WebView } from 'react-native-webview';
 import { STYLES } from '../Styles/Styles';
@@ -27,7 +26,8 @@ class HelpScreen extends LayoutView<HelpController> {
                     source={{uri: "https://farvater.travel/help/"}}
                     style={{height: "100%"}}
                /> */}
-               <BaseWebView {...this.childProps(this.controller.webview)} uri="https://farvater.travel/help/" />
+                
+               <BaseWebView {...this.childProps(this.controller.webview)} uri={`${this.controller.domainURI}help/`}/>
             </View>
         );
     }

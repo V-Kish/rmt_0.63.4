@@ -45,6 +45,9 @@ class Navigator {
 
 
     public toggleDrawer(){
+        if (this._navigation === null) {
+            return;
+        }
         this._navigation.dispatch(DrawerActions.toggleDrawer());
     }
 

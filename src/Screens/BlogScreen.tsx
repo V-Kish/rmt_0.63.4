@@ -26,7 +26,6 @@ class BlogScreen extends LayoutView<BlogController> {
                     source={{uri: "https://blog.farvater.travel/"}}
                     style={{height: "100%"}}
                /> */}
-
                 <BaseWebView {...this.childProps(this.controller.webview)} uri="https://blog.farvater.travel/" />
             </View>
         );

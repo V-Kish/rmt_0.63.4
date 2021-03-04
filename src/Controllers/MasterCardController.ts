@@ -1,11 +1,12 @@
 import {BaseController} from "./BaseController";
+import { WebViewController } from "./WebViewController";
 
 
 
-class MasterCardController extends BaseController{
+class MasterCardController extends WebViewController{
     
     constructor() {
-        super({name:'MasterCardController',id:'MasterCardControllerId'})
+        super({id:'MasterCardControllerId'})
     }
 }
 export {MasterCardController}
