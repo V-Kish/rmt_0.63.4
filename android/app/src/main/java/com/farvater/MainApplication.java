@@ -1,4 +1,4 @@
-package com.mytestapp;
+package com.farvater;
 
 import android.app.Application;
 import android.content.Context;

@@ -1,6 +1,6 @@
-import { BaseModel, baseProps } from "./BaseModel";
+import { BaseModel, baseModelProps } from "./BaseModel";
 
-type baseScreenProps = baseProps & {
+type baseScreenProps = baseModelProps & {
     screenName: string;
 };
 

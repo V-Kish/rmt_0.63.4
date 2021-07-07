@@ -4,30 +4,26 @@ import { BaseScreen } from '../Core/BaseScreen';
 import {baseScreenProps, componentPropsWithModel} from "../Core/BaseComponent";
 import {BaseScreenModel} from "../Core/BaseScreenModel";
 import { HomeController } from '../Controllers/HomeController';
-import {resetTheme, styledTheme, STYLES} from "../Styles/Styles";
 import {app} from "../Core/AppImpl";
-class HomeScreen extends BaseScreen<HomeController> {
+import { LayoutView } from './Layout';
+import { WebView } from 'react-native-webview';
+import { STYLES } from '../Styles/Styles';
+ 
+class HomeScreen extends LayoutView<HomeController> {
     constructor(props:componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
         super(props,HomeController);
     }
 
-    get screenName() {
-        return 'HomeScreen';
-    }
-    public get styles (){
-        return styledTheme(this, {drawer: STYLES.drawer, buttons: STYLES.buttons})
+    public get screenName() {
+        return HomeScreen.name;
     }
 
-    content() {
+    public content() {
         return (
-            <View style={this.styles.drawer.container}>
-                <TouchableOpacity  style={this.styles.buttons.container} onPress={() =>{
-                    app.currentUser.userTheme = 'dark';
-                    resetTheme();
-                }}>
-                    <Text style={{color:'green'}}>Change them</Text>
-                </TouchableOpacity>
-
+            <View style={ STYLES.homeScreen.container }>
+               <WebView 
+                    source={{uri: "https://rozetka.com.ua"}}
+               />
             </View>
         );
     }

@@ -3,28 +3,40 @@ import { TypedBaseComponent, baseScreenProps, componentPropsWithModel } from "./
 import { BaseScreenModel } from "./BaseScreenModel";
 import { View } from "react-native";
 import { BaseController, baseControllerProps } from "../Controllers/BaseController";
-export const CurrentScreen = React.createContext(null);
-abstract class BaseScreen<C extends BaseController> extends TypedBaseComponent<baseScreenProps, BaseScreenModel> {
+import { app } from "./AppImpl";
+import { BaseModel, baseModelProps } from "./BaseModel";
 
+export const CurrentScreen = React.createContext(null);
+
+abstract class BaseScreen<C extends BaseController> extends TypedBaseComponent<baseScreenProps, BaseScreenModel> {
+    /**
+     * ���������� ������
+     */
     private readonly _controller: C;
 
     /**
-     *
-     * @returns {string} Sum of a and b
+     * ��� ������
     */
-       get screenName() {
+    public get screenName(): string {
         throw new Error('');
-        return '';
     }
 
+    public get id() {
+        return this.screenName;
+    }
     /**
-     *
+     * ����������� �������� �����
      * @param props - props
      * @param controller - controller
     */
-    constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>, controllerImpl: new (props:baseControllerProps) => C) {
+    constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>, controllerImpl: new (props: baseControllerProps) => C) {
         super(props);
-        this._controller = new controllerImpl({name:this.screenName,id:this.screenName});
+        this._controller = new controllerImpl({ name: this.screenName, id: this.screenName });
+        app.setScreen(this.screenName, this);
+    }
+
+    public childProps<M extends BaseModel<baseModelProps>>(model: M) {
+        return { ...super.childProps(model), screen: this };
     }
 
     /**
@@ -69,20 +81,19 @@ abstract class BaseScreen<C extends BaseController> extends TypedBaseComponent<b
     public hasFooter() {
         return true;
     }
-
     public footer(): JSX.Element | null {
         return <View />;
     }
 
     public render() {
         return (
-            <CurrentScreen.Provider value={this}>
+            <>
                 {this.header()}
                 <View style={{flex:1}}>
                     {this.content()}
                 </View>
                 {this.footer()}
-            </CurrentScreen.Provider>
+            </>
         );
     }
 }
